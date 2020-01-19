@@ -1,0 +1,164 @@
+:root {
+  --maxwidth: 15;
+  --overlap: 2;
+  --primarycolor: #08f;
+}
+
+html,
+body {
+  font-family: sans-serif;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.header {
+  background-color: var(--primarycolor);
+  padding: 30px;
+}
+
+.footer {
+  background-color: var(--primarycolor);
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+}
+
+.footer a {
+  color: #fff;
+}
+
+.content {
+  margin: auto;
+  overflow: auto;
+  padding: 20px;
+  max-width: 500px;
+}
+
+h1 {
+  color: #fff;
+}
+
+summary {
+  background-color: var(--primarycolor);
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+}
+
+details {
+  border: 1px solid var(--primarycolor);
+}
+
+details p {
+  margin-left: 50px;
+}
+
+input[type=radio] {
+  margin: 10px 0 0 50px;
+}
+
+.image-wrap {
+  border: 1px solid #ccc;
+  float: left;
+  width: calc(33% - 2px);
+}
+
+.square {
+  display: block;
+  width: 100%;
+}
+
+.title,
+.copy {
+  display: none;
+}
+
+#printbtn {
+  clear: left;
+  float: left;
+  margin: 20px 0;
+  padding: 10px 40px;
+}
+
+.help-icon {
+  background: var(--primarycolor);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primarycolor);
+  color: #fff;
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 700;
+  height: 1.2em;
+  margin-left: 20px;
+  width: 1.2em;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+@media print {
+  .noprint {
+    display: none;
+  }
+
+  #output {
+    max-width: 100%;
+  }
+
+  .page {
+    float: none;
+    page-break-before: always;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .title {
+    display: block;
+    font-size: 10px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+    width: auto;
+  }
+
+  .image-wrap {
+    float: none;
+    margin: auto;
+  }
+
+  .stage .image-wrap,
+  .stage .square {
+    height: 25cm;
+    width: 25cm;
+  }
+
+  .parlor .image-wrap,
+  .parlor .square {
+    height: 13cm;
+    width: 13cm;
+  }
+
+  .split .image-wrap {
+    max-width: calc(var(--maxwidth) * 1cm);
+    overflow: hidden;
+  }
+
+  .split .copy {
+    display: block;
+  }
+
+  .split .copy .image-wrap {
+    max-width: calc((25 - var(--maxwidth) + var(--overlap)) * 1cm);
+  }
+
+  .split .copy .square {
+    margin-left: calc((0 - var(--maxwidth) + var(--overlap)) * 1cm);
+  }
+
+  .split .image-wrap .square {
+    max-width: none;
+  }
+}
