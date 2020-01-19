@@ -162,6 +162,12 @@ function processRadio(evt) {
 */
 function setMaxWidth(evt) {
     const ROOT = document.documentElement;
+    
+    if (parseFloat(evt.target.value) < parseFloat(evt.target.min)) {
+        evt.target.value = evt.target.min;
+    } else if (parseFloat(evt.target.value) > parseFloat(evt.target.max)) {
+        evt.target.value = evt.target.max;
+    }
 
     ROOT.style.setProperty("--maxwidth", evt.target.value);
 
@@ -174,6 +180,12 @@ function setMaxWidth(evt) {
 */
 function setOverlap(evt) {
     const ROOT = document.documentElement;
+
+    if (parseInt(evt.target.value) < parseInt(evt.target.min)) {
+        evt.target.value = evt.target.min;
+    } else if (parseInt(evt.target.value) > parseInt(evt.target.max)) {
+        evt.target.value = evt.target.max;
+    }
 
     ROOT.style.setProperty("--overlap", evt.target.value);
 
