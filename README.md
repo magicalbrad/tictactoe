@@ -1,21 +1,21 @@
 # Tic Tac Toe Pro Printing Utility
 
 ## Introduction
-"Tic Tac Toe Pro" is a magic effect produced by Bond Lee. Printing images to customize it always seemd more difficult than it needed to be.  So, I created a utility for my own use to make it easier. I thought I'd share it in case other people might find it useful.
+"Tic Tac Toe Pro" is a magic effect produced by Bond Lee. Printing images to customize it always seemed more difficult than it needed to be.  So, I created a utility for my own use to make it easier. I thought I'd share it in case other people might find it useful.
 
-Plese be aware, I am not affiliated with Bond Lee, the creator of this effect. I'm just a performer who uses it. So, if you're looking for information about how it works, how to perfom it, where to get it, you won't find it here. However, if you're an authorized user who'd like an easier way to print customized images, this could be what you're looking for.
+Please be aware, I am not affiliated with Bond Lee, the creator of this effect. I'm just a performer who uses it. So, if you're looking for information about how it works, how to perform it, where to get it, you won't find it here. However, if you're an authorized user who'd like an easier way to print customized images, this could be what you're looking for.
 
-Simply select size of your Tic Tac Toe Pro and provide the image you wish to use. Print it out directly from your browser. It will print one square per page. If you're using the stage size, each square will be split across two pages for pringing on letter size paper. (Or A4, if that's your thing.) Just cut them out, attach them, and you're good to go.
+Simply select size of your Tic Tac Toe Pro and provide the image you wish to use. Print it out directly from your browser. It will print one square per page. If you're using the stage size, each square will be split across two pages for printing on letter size paper. (Or A4, if that's your thing.) Just cut them out, attach them, and you're good to go.
 
 ## Demo
 Want to try it out? Just go here: https://magicalbrad.github.io/tictactoe/
 
 ## Usage
-Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than usng the Print button. Microsoft Edge is a mess, so don't even try. (Though the new Chromium version of Edge probably will work.) I don't know about Safari.
+Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than using the Print button. Microsoft Edge is a mess, so don't even try. (Though the new Chromium version of Edge probably will work.) I don't know about Safari.
 
 Select the size you are using, Parlor or Stage.
 
-Then, click the "Choose File" button and select your desired file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for pringing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
+Then, click the "Choose File" button and select your desired file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for printing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
 
 Finally, click print. (Be sure scaling is set to 100%. You may need to remove headers or adjust margins.)
 
