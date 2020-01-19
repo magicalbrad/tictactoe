@@ -11,9 +11,9 @@ Simply select size of your Tic Tac Toe Pro and provide the image you wish to use
 Want to try it out? Just go here: https://magicalbrad.github.io/tictactoe/
 
 ## Usage
-Open the page in your browser. This utility was designed and tested using the Chrome browser. It works reasonably in Firefox, as long as you use the print preview option from the browser menu. Don't even try in Edge. (Though the new Chromium version of Edge probably will work.) Don't know about Safari.
+Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than usng the Print button. Microsoft Edge is a mess, so don't even try. (Though the new Chromium version of Edge probably will work.) I don't know about Safari.
 
-First, select the size you are using, Parlor or Stage.
+Select the size you are using, Parlor or Stage.
 
 Then, click the "Choose File" button and select your desired file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for pringing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
 
@@ -30,8 +30,3 @@ When a square is split across two pages, this value controls the amount the two 
 
 #### Background
 This is the background color for the image. It will only be visible if the image you are using is not square or has transparent areas. If you change the background color, you will need to reload your image to see the change.
-
-### Offline Use
-The utility will always be available here: https://magicalbrad.github.io/tictactoe/
-
-If you wish to be able to use it without being connected to the internet, copy all the source files to a directory on your computer. Open the index.html file in your browser. All processing happens in the browser, so no internet connection is required.
