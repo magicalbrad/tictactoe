@@ -180,10 +180,24 @@ function setOverlap(evt) {
     checkPrintSplit();
 }
 
+/**
+  * @desc prints page with special Firefox logic
+*/
+function printAll() {
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+        alert("To print from Firefox, you must use the browswer menu " +
+            "to open the print preview. Be sure scaling is set " +
+            "to 100%. It may be necessary to remove the headers and  " +
+            "footers to make stage size prints fits on one page.");
+    } else {
+        print();
+    }
+}
+
 //Set listeners
 document.querySelector("#imgfile").addEventListener("change", processImage);
 document.querySelector("#stage").addEventListener("change", processRadio);
 document.querySelector("#parlor").addEventListener("change", processRadio);
 document.querySelector("#maxwidth").addEventListener("change", setMaxWidth);
 document.querySelector("#overlap").addEventListener("change", setOverlap);
-document.querySelector("#printbtn").addEventListener("click", () => print());
+document.querySelector("#printbtn").addEventListener("click", printAll);
