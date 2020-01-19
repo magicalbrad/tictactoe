@@ -42,15 +42,14 @@ summary {
   background-color: var(--primarycolor);
   color: #fff;
   font-weight: bold;
+  margin-left: -50px;
+  margin-right: -25px;
   padding: 5px;
 }
 
 details {
   border: 1px solid var(--primarycolor);
-}
-
-details p {
-  margin-left: 50px;
+  padding: 0 25px 0 50px;
 }
 
 input[type=radio] {
@@ -74,9 +73,7 @@ input[type=radio] {
 }
 
 #printbtn {
-  clear: left;
-  float: left;
-  margin: 20px 0;
+  margin-bottom: 40px;
   padding: 10px 40px;
 }
 
