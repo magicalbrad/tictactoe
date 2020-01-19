@@ -96,7 +96,7 @@ function sliceSquare(image, col, row) {
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
     CTX.drawImage(image, COL_OFFSET + X_ADJUST, ROW_OFFSET + Y_ADJUST);
 
-    addSquareToDOM(CANVAS.toDataURL("image/jpeg", 0.8), row, col);
+    addSquareToDOM(CANVAS.toDataURL("image/png"), row, col);
 
     return new Promise((resolve) => resolve(image));
 }
