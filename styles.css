@@ -112,6 +112,10 @@ input[type=radio] {
     width: 100%;
   }
 
+  .page:first-child {
+    page-break-before: avoid;
+  }
+
   .title {
     display: block;
     font-size: 10px;
