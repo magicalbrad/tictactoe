@@ -142,7 +142,16 @@ function checkPrintSplit() {
   * @param event evt - onChange event object from radio button
 */
 function processRadio(evt) {
-    document.querySelector("#output").className = evt.target.id;
+    const SIZE = evt.target.id;
+    const EL = document.querySelector("#output");
+    
+    if (SIZE === "parlor") {
+        EL.classList.remove("stage");
+        EL.classList.add("parlor");
+    } else {
+        EL.classList.remove("parlor");
+        EL.classList.add("stage");
+    }
 
     checkPrintSplit();
 }
