@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body class="split">
+<body class="split labels">
     <div class="noprint">
         <div class="header">
             <div class="content">
@@ -29,20 +29,24 @@
                 <summary>Settings</summary>
                 <p>
                     <label for="maxwidth">Max Printed Width:</label>
-                    <input type="number" name="maxwidth" id="maxwidth" max="25" min="13" step="0.1" value="15">cm <span class="help-icon" aria-label="Indicates how wide a square can be before it must be split onto two pages." data-balloon-pos="up" data-balloon-length="medium">?</span>
+                    <input type="number" name="maxwidth" id="maxwidth" max="25" min="13" step="0.1" value="15">cm <span class="help-icon" aria-label="Indicates how wide a square can be before it must be split onto two pages." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
                 </p>
                 <p>
                     <label for="overlap">Overlap:</label>
-                    <input type="number" name="overlap" id="overlap" max="5" min="0" step="1" value="2">cm <span class="help-icon" aria-label="Indicates how much the pieces should overlap when a square is split into multiple pages for printing." data-balloon-pos="up" data-balloon-length="medium">?</span>
+                    <input type="number" name="overlap" id="overlap" max="5" min="0" step="1" value="2">cm <span class="help-icon" aria-label="Indicates how much the pieces should overlap when a square is split into multiple pages for printing." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
                 </p>
                 <p>
                     <label for="background">Background Color:</label>
-                    <input type="color" name="background" id="background" value="#ffffff"> <span class="help-icon" aria-label="Determines the background color for the image. The background is only visible for transparent images or images that aren't square. Must be set before loading the image." data-balloon-pos="up" data-balloon-length="medium">?</span>
+                    <input type="color" name="background" id="background" value="#ffffff"> <span class="help-icon" aria-label="Determines the background color for the image. The background is only visible for transparent images or images that aren't square. Must be set before loading the image." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
+                </p>
+                <p>
+                    <label for="labels">Print Square Identification:</label>
+                    <input type="checkbox" name="labels" id="labels" checked> <span class="help-icon" aria-label="When checked, each page will include a description of each square, such as &ldquo;Top Left.&rdquo;" data-balloon-pos="up-right" data-balloon-length="medium">?</span>
                 </p>
             </details>
             <p>
 		    <b>Load image:</b><br>
-		    <input type="file" id="imgfile" name="imgfile"><span class="help-icon" aria-label="Select the JPEG, PNG or GIF image you wish to use. Use a sufficiently large image. Images that are too small will result in poor print quality." data-balloon-pos="up" data-balloon-length="medium">?</span></p>
+		    <input type="file" id="imgfile" name="imgfile"><span class="help-icon" aria-label="Select the JPEG, PNG or GIF image you wish to use. Use a sufficiently large image. Images that are too small will result in poor print quality." data-balloon-pos="up-right" data-balloon-length="medium">?</span></p>
             <h2>Preview</h2>
         </div>
     </div>
@@ -105,6 +109,24 @@
 			above, some browsers will automatically show you a preview. Others 
 			won't. You don't have to use the print button. You can use your 
 			browser's menu to open print preview instead.</p>
+			<h3>Paper Size</h3>
+			<h4>Standard Letter/A4 Size</h4>
+			<p>Either parlor or stage size can be printed on standard paper
+			sizes. For stage size, the squares will be divided vertically and 
+			printed on two pages. The default settings should work. If you
+			wish you can change the width before the square is split and the
+			overlap between the two pieces.<p>
+			<h3>Large Tabloid/A3 Paper</h3>
+			<p>You can print each stage sized square on a single tabloid or A3 
+			sized piece paper. Under settings, set the "Max Printed Width" to
+			25cm, to prevent the squares from being split across two pages.
+			When printing, choose the appropriate paper size and be sure the
+			margins are set small enough for the squares to fit on the page.<p>
+			<h3>Save as PDF</h3>
+			<p>Instead of printing directly, you can use your browser's
+			"Print to PDF" functionality to create a file. This is particularly
+			uesful if you plan to send the file to a printing company, rather
+			than printing it yourself.</p>
 			<h3>Browsers</h3>
 			<p>Theoretically, this utility should work in modern browsers.
 			Reality is never that simple. Given that this is a "quick and dirty"
