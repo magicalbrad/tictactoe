@@ -192,10 +192,24 @@ function setOverlap(evt) {
     checkPrintSplit();
 }
 
+/**
+  * @desc adds or removes "labels" class needed for printing
+*/
+function setPrintLabels() {
+    const LABELS = document.querySelector("#labels").checked;
+
+    if (LABELS) {
+        document.body.classList.add("labels");
+    } else {
+        document.body.classList.remove("labels");
+    }
+}
+
 //Set listeners
 document.querySelector("#imgfile").addEventListener("change", processImage);
 document.querySelector("#stage").addEventListener("change", processRadio);
 document.querySelector("#parlor").addEventListener("change", processRadio);
 document.querySelector("#maxwidth").addEventListener("change", setMaxWidth);
 document.querySelector("#overlap").addEventListener("change", setOverlap);
+document.querySelector("#labels").addEventListener("change", setPrintLabels);
 document.querySelector("#printbtn").addEventListener("click", () => print());
