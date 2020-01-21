@@ -116,6 +116,10 @@ input[type=file] {
   }
 
   .title {
+    display: none;
+  }
+
+  .labels .title {
     display: block;
     font-size: 10px;
     left: 0;
@@ -125,6 +129,7 @@ input[type=file] {
     transform: rotate(180deg);
     writing-mode: vertical-rl;
     width: auto;
+	z-index: -1;
   }
 
   .image-wrap {
