@@ -128,9 +128,10 @@ function processImage(evt) {
 */
 function checkPrintSplit() {
     const STAGE = document.querySelector("#stage").checked;
+    const XSTAGE = document.querySelector("#xstage").checked;
     const MAX = document.querySelector("#maxwidth").value;
 
-    if (STAGE && MAX < 25) {
+    if ((STAGE && MAX < 25) || (XSTAGE && MAX < 24)) {
         document.body.classList.add("split");
     } else {
         document.body.classList.remove("split");
@@ -145,13 +146,7 @@ function processRadio(evt) {
     const SIZE = evt.target.id;
     const EL = document.querySelector("#output");
     
-    if (SIZE === "parlor") {
-        EL.classList.remove("stage");
-        EL.classList.add("parlor");
-    } else {
-        EL.classList.remove("parlor");
-        EL.classList.add("stage");
-    }
+    EL.className = (SIZE + " content");
 
     checkPrintSplit();
 }
@@ -206,9 +201,10 @@ function setPrintLabels() {
 }
 
 //Set listeners
+document.querySelectorAll("[name=size]").forEach((radioEl) => {
+    radioEl.addEventListener("change", processRadio)
+});
 document.querySelector("#imgfile").addEventListener("change", processImage);
-document.querySelector("#stage").addEventListener("change", processRadio);
-document.querySelector("#parlor").addEventListener("change", processRadio);
 document.querySelector("#maxwidth").addEventListener("change", setMaxWidth);
 document.querySelector("#overlap").addEventListener("change", setOverlap);
 document.querySelector("#labels").addEventListener("change", setPrintLabels);
