@@ -100,7 +100,9 @@ input[type=file] {
   }
 
   #output {
-    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   .page {
@@ -193,13 +195,13 @@ input[type=file] {
 
   .mini .page {
     float: left;
-	margin: 0.25cm;
+    margin: 0.25cm;
     page-break-before: avoid;
-	width: 2cm;
+    width: 2cm;
   }
   
   .mini .title {
-	  display: none;
+    display: none;
   }
   
 }
