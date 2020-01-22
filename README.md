@@ -13,7 +13,7 @@ Want to try it out? Just go here: https://magicalbrad.github.io/tictactoe/
 ## Usage
 Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than using the Print button. Microsoft Edge is a mess, so don't even try. (Though the new Chromium version of Edge probably will work.) I don't know about Safari.
 
-Select the size you are using, Parlor or Stage.
+Select the size you are using.
 
 Then, click the "Choose File" button and select your desired file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for printing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
 
@@ -32,4 +32,4 @@ When a square is split across two pages, this value controls the amount the two 
 This is the background color for the image. It will only be visible if the image you are using is not square or has transparent areas. If you change the background color, you will need to reload your image to see the change.
 
 #### Print Square Identifier
-If checked, the location of each square will be printed on the page, such as "Top Left."
+If checked, the location of each square will be printed on the page, such as "Top Left." This setting is ignored for Mini size, as all squares print on a single page.
