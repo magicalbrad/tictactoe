@@ -11,7 +11,7 @@ Simply select size of your Tic Tac Toe Pro and provide the image you wish to use
 Want to try it out? Just go here: https://magicalbrad.github.io/tictactoe/
 
 ## Usage
-Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than using the Print button. Microsoft Edge is a mess, so don't even try. (Though the new Chromium version of Edge probably will work.) I don't know about Safari.
+Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than using the Print button. Legacy Microsoft Edge (Version 18 or lower) is a mess, so don't even try. New Edge (version 79 or greater) does work. I don't know about Safari.
 
 Select the size you are using.
 
