@@ -143,10 +143,22 @@ input[type=file] {
     width: 25cm;
   }
 
+  .xstage .image-wrap,
+  .xstage .square {
+    height: 24cm;
+    width: 24cm;
+  }
+
   .parlor .image-wrap,
   .parlor .square {
     height: 13cm;
     width: 13cm;
+  }
+
+  .mini .image-wrap,
+  .mini .square {
+    height: 2cm;
+    width: 2cm;
   }
 
   .split .image-wrap {
@@ -169,4 +181,21 @@ input[type=file] {
   .split .image-wrap .square {
     max-width: none;
   }
+  
+  /* Print mini's on one page */
+  #output.mini {
+    width: 8cm;
+  }
+
+  .mini .page {
+    float: left;
+	margin: 0.25cm;
+    page-break-before: avoid;
+	width: 2cm;
+  }
+  
+  .mini .title {
+	  display: none;
+  }
+  
 }
