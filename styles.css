@@ -101,8 +101,8 @@ input[type=file] {
 
   #output {
     margin: 0;
+    max-width: 100%;
     padding: 0;
-    width: 100%;
   }
 
   .page {
@@ -131,7 +131,7 @@ input[type=file] {
     transform: rotate(180deg);
     writing-mode: vertical-rl;
     width: auto;
-	z-index: -1;
+    z-index: -1;
   }
 
   .image-wrap {
