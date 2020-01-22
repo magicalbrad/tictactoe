@@ -162,7 +162,7 @@ input[type=file] {
   }
 
   .split .image-wrap {
-    max-width: calc(var(--maxwidth) * 1cm);
+    width: calc(var(--maxwidth) * 1cm);
     overflow: hidden;
   }
 
@@ -171,11 +171,11 @@ input[type=file] {
   }
 
   .split .stage .copy .image-wrap {
-    max-width: calc((25 - var(--maxwidth) + var(--overlap)) * 1cm);
+    width: calc((25 - var(--maxwidth) + var(--overlap)) * 1cm);
   }
 
   .split .xstage .copy .image-wrap {
-    max-width: calc((24 - var(--maxwidth) + var(--overlap)) * 1cm);
+    width: calc((24 - var(--maxwidth) + var(--overlap)) * 1cm);
   }
 
   .split .copy .square {
