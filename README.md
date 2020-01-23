@@ -30,6 +30,3 @@ When a square is split across two pages, this value controls the amount the two 
 
 #### Background
 This is the background color for the image. It will only be visible if the image you are using is not square or has transparent areas. If you change the background color, you will need to reload your image to see the change.
-
-#### Print Square Identifier
-If checked, the location of each square will be printed on the page, such as "Top Left." This setting is ignored for Mini size, as all squares print on a single page.
