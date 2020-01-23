@@ -19,23 +19,23 @@
         <div class="content">
             <p><b>Select Tic Tac Toe Size:</b>
                 <br>
-                <input type="radio" id="stage" name="size" value="stage" checked>
+                <input type="radio" id="stage" name="size" value="25" checked>
                 <label for="stage">Pro Stage (75cm x 75cm)</label>
                 <br>
-                <input type="radio" id="xstage" name="size" value="xstage">
+                <input type="radio" id="xstage" name="size" value="24">
                 <label for="xstage">X Stage (72cm x 72cm)</label>
                 <br>
-                <input type="radio" id="parlor" name="size" value="parlor">
+                <input type="radio" id="parlor" name="size" value="13">
                 <label for="parlor">Parlor (39cm x 39cm)</label>
                 <br>
-                <input type="radio" id="mini" name="size" value="mini">
+                <input type="radio" id="mini" name="size" value="2">
                 <label for="mini">Mini (6cm x 6cm)</label>
             </p>
             <details>
                 <summary>Settings</summary>
                 <p>
                     <label for="maxwidth">Max Printed Width:</label>
-                    <input type="number" name="maxwidth" id="maxwidth" max="25" min="13" step="1" value="15">cm <span class="help-icon" aria-label="Indicates how wide a square can be before it must be split onto two pages." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
+                    <input type="number" name="maxwidth" id="maxwidth" max="25" min="13" step="1" value="15">cm <span class="help-icon" aria-label="Indicates how wide a square can be before it must be split onto two pages. Recommend 15 for letter/A4, or 25 for tabloid/A3." data-balloon-pos="up-right" data-balloon-length="large">?</span>
                 </p>
                 <p>
                     <label for="overlap">Overlap:</label>
@@ -43,20 +43,16 @@
                 </p>
                 <p>
                     <label for="background">Background Color:</label>
-                    <input type="color" name="background" id="background" value="#ffffff"><span class="help-icon" aria-label="Determines the background color for the image. The background is only visible for transparent images or images that aren't square. Must be set before loading the image." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
-                </p>
-                <p>
-                    <label for="labels">Print Square Identifier:</label>
-                    <input type="checkbox" name="labels" id="labels" checked><span class="help-icon" aria-label="When checked, each page will include a description of each square, such as &ldquo;Top Left.&rdquo;" data-balloon-pos="up-right" data-balloon-length="medium">?</span>
+                    <input type="color" name="background" id="background" value="#ffffff"><span class="help-icon" aria-label="Determines the background color for the image. The background is only visible for transparent images or images that aren't square. Must be set before loading the image." data-balloon-pos="up-right" data-balloon-length="large">?</span>
                 </p>
             </details>
             <p>
 		    <b>Load image:</b><br>
-		    <input type="file" id="imgfile" name="imgfile" accept="image/gif,image/jpeg,image/png"><span class="help-icon" aria-label="Select the JPEG, PNG or GIF image you wish to use. Use a sufficiently large image. Images that are too small will result in poor print quality." data-balloon-pos="up-right" data-balloon-length="medium">?</span></p>
+		    <input type="file" id="imgfile" name="imgfile" accept="image/gif,image/jpeg,image/png"><span class="help-icon" aria-label="Select the JPEG, PNG or GIF image you wish to use. Use a sufficiently large image. Images that are too small will result in poor print quality." data-balloon-pos="up-right" data-balloon-length="large">?</span></p>
             <h2>Preview</h2>
         </div>
     </div>
-    <div id="output" class="stage content">
+    <div id="output" class="content">
         <div class="page">
             <div class="image-wrap">
                 <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">

@@ -127,11 +127,11 @@ function processImage(evt) {
   * @desc adds or removes "split" class needed for printing
 */
 function checkPrintSplit() {
-    const STAGE = document.querySelector("#stage").checked;
-    const XSTAGE = document.querySelector("#xstage").checked;
+    const SIZE_STR = document.querySelector("[name=size]:checked").value;
+    const SIZE = parseInt(SIZE_STR);
     const MAX = document.querySelector("#maxwidth").value;
 
-    if ((STAGE && MAX < 25) || (XSTAGE && MAX < 24)) {
+    if (SIZE > MAX) {
         document.body.classList.add("split");
     } else {
         document.body.classList.remove("split");
@@ -139,15 +139,21 @@ function checkPrintSplit() {
 }
 
 /**
-  * @desc sets class on radio button change
+  * @desc sets square size on radio button change
   * @param event evt - onChange event object from radio button
 */
 function processRadio(evt) {
-    const SIZE = evt.target.id;
-    const EL = document.querySelector("#output");
+    const ROOT = document.documentElement;
     
-    EL.className = (SIZE + " content");
-
+    ROOT.style.setProperty("--squaresize", evt.target.value);
+    
+    // Print mini size on single page
+    if (parseInt(evt.target.value) === 2) {
+        document.querySelector("#output").classList.add("singlepage");
+    } else {
+        document.querySelector("#output").classList.remove("singlepage");
+    }
+    
     checkPrintSplit();
 }
 
@@ -187,19 +193,6 @@ function setOverlap(evt) {
     checkPrintSplit();
 }
 
-/**
-  * @desc adds or removes "labels" class needed for printing
-*/
-function setPrintLabels() {
-    const LABELS = document.querySelector("#labels").checked;
-
-    if (LABELS) {
-        document.body.classList.add("labels");
-    } else {
-        document.body.classList.remove("labels");
-    }
-}
-
 //Set listeners
 document.querySelectorAll("[name=size]").forEach((radioEl) => {
     radioEl.addEventListener("change", processRadio)
@@ -207,5 +200,4 @@ document.querySelectorAll("[name=size]").forEach((radioEl) => {
 document.querySelector("#imgfile").addEventListener("change", processImage);
 document.querySelector("#maxwidth").addEventListener("change", setMaxWidth);
 document.querySelector("#overlap").addEventListener("change", setOverlap);
-document.querySelector("#labels").addEventListener("change", setPrintLabels);
 document.querySelector("#printbtn").addEventListener("click", () => print());

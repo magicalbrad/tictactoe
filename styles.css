@@ -1,4 +1,5 @@
 :root {
+  --squaresize: 25;
   --maxwidth: 15;
   --overlap: 2;
   --primarycolor: #08c;
@@ -121,7 +122,7 @@ input[type=file] {
     display: none;
   }
 
-  .labels .title {
+  .title {
     display: block;
     font-size: 10px;
     left: 0;
@@ -139,28 +140,10 @@ input[type=file] {
     margin: auto;
   }
 
-  .stage .image-wrap,
-  .stage .square {
-    height: 25cm;
-    width: 25cm;
-  }
-
-  .xstage .image-wrap,
-  .xstage .square {
-    height: 24cm;
-    width: 24cm;
-  }
-
-  .parlor .image-wrap,
-  .parlor .square {
-    height: 13cm;
-    width: 13cm;
-  }
-
-  .mini .image-wrap,
-  .mini .square {
-    height: 2cm;
-    width: 2cm;
+  .image-wrap,
+  .square {
+    height: calc(var(--squaresize) * 1cm);
+    width: calc(var(--squaresize) * 1cm);
   }
 
   .split .image-wrap {
@@ -172,12 +155,8 @@ input[type=file] {
     display: block;
   }
 
-  .split .stage .copy .image-wrap {
-    width: calc((25 - var(--maxwidth) + var(--overlap)) * 1cm);
-  }
-
-  .split .xstage .copy .image-wrap {
-    width: calc((24 - var(--maxwidth) + var(--overlap)) * 1cm);
+  .split .copy .image-wrap {
+    width: calc((var(--squaresize) - var(--maxwidth) + var(--overlap)) * 1cm);
   }
 
   .split .copy .square {
@@ -189,18 +168,18 @@ input[type=file] {
   }
   
   /* Print mini's on one page */
-  #output.mini {
+  #output.singlepage {
     width: 8cm;
   }
 
-  .mini .page {
+  .singlepage .page {
     float: left;
     margin: 0.25cm;
     page-break-before: avoid;
     width: 2cm;
   }
   
-  .mini .title {
+  .singlepage .title {
     display: none;
   }
   
