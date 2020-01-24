@@ -1,7 +1,4 @@
 :root {
-  --squaresize: 25;
-  --maxwidth: 15;
-  --overlap: 2;
   --primarycolor: #08c;
 }
 
@@ -43,6 +40,7 @@ h1 {
 summary {
   background-color: var(--primarycolor);
   color: #fff;
+  display: list-item;
   font-weight: bold;
   margin-left: -50px;
   margin-right: -25px;
@@ -51,6 +49,7 @@ summary {
 
 details {
   border: 1px solid var(--primarycolor);
+  display: block;
   padding: 0 25px 0 50px;
 }
 
@@ -59,24 +58,15 @@ input[type=file] {
   margin: 10px 0 0 50px;
 }
 
-.image-wrap {
+.square {
   border: 1px solid #ccc;
+  display: block;
   float: left;
   width: calc(33% - 2px);
 }
 
-.square {
-  display: block;
-  width: 100%;
-}
-
-.title,
-.copy {
-  display: none;
-}
-
-#printbtn {
-  margin-bottom: 40px;
+button {
+  margin: 20px 10px 40px 0;
   padding: 10px 40px;
 }
 
@@ -95,92 +85,41 @@ input[type=file] {
   line-height: 1.2em;
 }
 
-@media print {
-  .noprint {
-    display: none;
-  }
+#printer {
+  position: absolute;
+  left: -999px;
+  top: 0;
+}
 
-  #output {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 0;
-  }
+.loader.show::after {
+  animation: spin 2s linear infinite;
+  border: 12px solid #0004;
+  border-top: 12px solid var(--primarycolor);
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 60px;
+  left: calc(50vw - 30px);
+  position: fixed;
+  top: calc(50vh - 30px);
+  width: 60px;
+}
 
-  .page {
-    float: none;
-    page-break-before: always;
-    position: relative;
-    text-align: center;
-    width: 100%;
-  }
+.loader {
+  display: none;
+}
 
-  .page:first-child {
-    page-break-before: avoid;
-  }
+.loader.show {
+  background-color: #fff8;
+  display: block;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
 
-  .title {
-    display: none;
-  }
-
-  .title {
-    display: block;
-    font-size: 10px;
-    left: 0;
-    margin: 0;
-    position: absolute;
-    top: 0;
-    transform: rotate(180deg);
-    writing-mode: vertical-rl;
-    width: auto;
-    z-index: -1;
-  }
-
-  .image-wrap {
-    float: none;
-    margin: auto;
-  }
-
-  .image-wrap,
-  .square {
-    height: calc(var(--squaresize) * 1cm);
-    width: calc(var(--squaresize) * 1cm);
-  }
-
-  .split .image-wrap {
-    width: calc(var(--maxwidth) * 1cm);
-    overflow: hidden;
-  }
-
-  .split .copy {
-    display: block;
-  }
-
-  .split .copy .image-wrap {
-    width: calc((var(--squaresize) - var(--maxwidth) + var(--overlap)) * 1cm);
-  }
-
-  .split .copy .square {
-    margin-left: calc((0 - var(--maxwidth) + var(--overlap)) * 1cm);
-  }
-
-  .split .image-wrap .square {
-    max-width: none;
-  }
-  
-  /* Print mini's on one page */
-  #output.singlepage {
-    width: 8cm;
-  }
-
-  .singlepage .page {
-    float: left;
-    margin: 0.25cm;
-    page-break-before: avoid;
-    width: 2cm;
-  }
-  
-  .singlepage .title {
-    display: none;
-  }
-  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

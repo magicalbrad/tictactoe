@@ -2,6 +2,7 @@
 <html lang="en-US">
 
 <head>
+    <meta charset="UTF-8">
     <title>Tic Tac Toe Image Splitter</title>
     <link rel='icon' href='favicon.ico' type='image/x-icon'>
     <link rel="stylesheet" href="styles.css">
@@ -9,178 +10,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body class="split labels">
-    <div class="noprint">
-        <div class="header">
-            <div class="content">
-                <h1>Tic Tac Toe Image Splitter</h1>
-            </div>
-        </div>
+<body>
+    <div class="header">
         <div class="content">
-            <p><b>Select Tic Tac Toe Size:</b>
-                <br>
-                <input type="radio" id="stage" name="size" value="25" checked>
-                <label for="stage">Pro Stage (75cm x 75cm)</label>
-                <br>
-                <input type="radio" id="xstage" name="size" value="24">
-                <label for="xstage">X Stage (72cm x 72cm)</label>
-                <br>
-                <input type="radio" id="parlor" name="size" value="13">
-                <label for="parlor">Parlor (39cm x 39cm)</label>
-                <br>
-                <input type="radio" id="mini" name="size" value="2">
-                <label for="mini">Mini (6cm x 6cm)</label>
-            </p>
-            <details>
-                <summary>Settings</summary>
-                <p>
-                    <label for="maxwidth">Max Printed Width:</label>
-                    <input type="number" name="maxwidth" id="maxwidth" max="25" min="13" step="1" value="15">cm <span class="help-icon" aria-label="Indicates how wide a square can be before it must be split onto two pages. Recommend 15 for letter/A4, or 25 for tabloid/A3." data-balloon-pos="up-right" data-balloon-length="large">?</span>
-                </p>
-                <p>
-                    <label for="overlap">Overlap:</label>
-                    <input type="number" name="overlap" id="overlap" max="5" min="0" step="1" value="2">cm <span class="help-icon" aria-label="Indicates how much the pieces should overlap when a square is split into multiple pages for printing." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
-                </p>
-                <p>
-                    <label for="background">Background Color:</label>
-                    <input type="color" name="background" id="background" value="#ffffff"><span class="help-icon" aria-label="Determines the background color for the image. The background is only visible for transparent images or images that aren't square. Must be set before loading the image." data-balloon-pos="up-right" data-balloon-length="large">?</span>
-                </p>
-            </details>
+            <h1>Tic Tac Toe Image Splitter</h1>
+        </div>
+    </div>
+    <div class="content">
+        <p><b>Select Tic Tac Toe Size:</b>
+            <br>
+            <input type="radio" id="stage" name="size" value="25" checked>
+            <label for="stage">Pro Stage (75cm x 75cm)</label>
+            <br>
+            <input type="radio" id="xstage" name="size" value="24">
+            <label for="xstage">X Stage (72cm x 72cm)</label>
+            <br>
+            <input type="radio" id="parlor" name="size" value="13">
+            <label for="parlor">Parlor (39cm x 39cm)</label>
+            <br>
+            <input type="radio" id="mini" name="size" value="2">
+            <label for="mini">Mini (6cm x 6cm)</label>
+        </p>
+        <p><b>Select Paper Size:</b>
+            <select name="paper" id="paper">
+                <option value="a3" data-pagewidth="29.7" data-contentwidth="25">A3</option>
+                <option value="a4" data-pagewidth="21" data-contentwidth="15">A4</option>
+                <option value="letter" data-pagewidth="21.59" data-contentwidth="15" selected>Letter</option>
+                <option value="tabloid" data-pagewidth="27.94" data-contentwidth="25">Tabloid</option>
+            </select>
+        </p>
+        <details>
+            <summary>Settings</summary>
             <p>
-		    <b>Load image:</b><br>
-		    <input type="file" id="imgfile" name="imgfile" accept="image/gif,image/jpeg,image/png"><span class="help-icon" aria-label="Select the JPEG, PNG or GIF image you wish to use. Use a sufficiently large image. Images that are too small will result in poor print quality." data-balloon-pos="up-right" data-balloon-length="large">?</span></p>
-            <h2>Preview</h2>
+                <label for="overlap">Overlap:</label>
+                <input type="number" name="overlap" id="overlap" max="5" min="0" step="1" value="2">cm
+                <span class="help-icon" aria-label="Indicates how much the pieces should overlap when a square is split into multiple pages for printing." data-balloon-pos="up-right" data-balloon-length="medium">?</span>
+            </p>
+            <p>
+                <label for="background">Background Color:</label>
+                <input type="color" name="background" id="background" value="#ffffff">
+                <span class="help-icon" aria-label="Determines the background color for the image. The background is only visible for transparent images or images that aren't square. Must be set before loading the image." data-balloon-pos="up-right" data-balloon-length="large">?</span>
+            </p>
+        </details>
+        <p>
+            <b>Load image:</b>
+            <br>
+            <input type="file" id="imgfile" name="imgfile" accept="image/gif,image/jpeg,image/png">
+            <span class="help-icon" aria-label="Select the JPEG, PNG or GIF image you wish to use. Use a sufficiently large image. Images that are too small will result in poor print quality." data-balloon-pos="up-right" data-balloon-length="large">?</span>
+        </p>
+        <h2>Preview</h2>
+        <div id="output">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
+            <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=">
         </div>
-    </div>
-    <div id="output" class="content">
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-        <div class="page">
-            <div class="image-wrap">
-                <img class="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-            </div>
-        </div>
-    </div>
-    <div class="content noprint">
         <button id="printbtn">Print</button>
-		<details>
-			<summary>Printing Problems?</summary>
-			<p>You may need to adjust your printing settings, particularly for 
-			stage size. Ensure that scaling is set to 100%. Also, you may need 
-			to turn off headers and footers, and adjust your margins.</p>
-			<p>It's easier to ensure everything is correct using your browser's
-			print preview functionality. When you click the "Print" button
-			above, some browsers will automatically show you a preview. Others 
-			won't. You don't have to use the print button. You can use your 
-			browser's menu to open print preview instead.</p>
-			<h3>Paper Size</h3>
-			<h4>Standard Letter/A4 Size</h4>
-			<p>Either parlor or stage size can be printed on standard paper
-			sizes. For stage size, the squares will be divided vertically and 
-			printed on two pages. The default settings should work. If you
-			wish you can change the width before the square is split and the
-			overlap between the two pieces.<p>
-			<h3>Large Tabloid/A3 Paper</h3>
-			<p>You can print each stage sized square on a single tabloid or A3 
-			sized piece paper. Under settings, set the "Max Printed Width" to
-			25cm, to prevent the squares from being split across two pages.
-			When printing, choose the appropriate paper size and be sure the
-			margins are set small enough for the squares to fit on the page.<p>
-			<h3>Save as PDF</h3>
-			<p>Instead of printing directly, you can use your browser's
-			"Print to PDF" functionality to create a file. This is particularly
-			uesful if you plan to send the file to a printing company, rather
-			than printing it yourself.</p>
-			<h3>Browsers</h3>
-			<p>Theoretically, this utility should work in modern browsers.
-			Reality is never that simple. Given that this is a "quick and dirty"
-			utility, there's a limit to how many hours I'm willing to spend 
-			resolving browser specific compatibility issues. (Hey, remember 
-			what you paid for this!)</p> 
-			<h4>Chrome</h4>
-			<p>This utility was designed for Chrome. If you run into trouble
-			with other browsers, you may want to try it in Chrome.</p>
-			<h4>Firefox</h4>
-			<p>Firefox seems to work fine, as long as your print settings are
-			correct. I recommend opening Print Preview from the Firefox menu
-			rather than using the print button, so you can be sure everything
-			looks good before printing.</p>
-			<h4>Microsoft Edge</h4>
-			<p>Legacy Edge versions 18 and lower don't work. Version 79 and
-			greater do. (Really. 79 is the next version after 18.)</p>
-			<h4>Internet Explorer</h4>
-			<p>No. Just no.</p>
-			<h4>Safari</h4>
-			<p>I don't know, I'm not a Mac guy. Give it a shot and let me know
-			how it goes.</p>
-			<h3>Issues</h3>
-			<p>If you find issues or have ideas for improvements, you can 
-			let me know on the
-			<a href="https://github.com/magicalbrad/tictactoe">Github project
-			page</a>. I'll do what I can with the time I can commit to this.
-			Better yet, if you're also a computer nerd like me, you can jump 
-			in fix or improve it yourself.</p>
-		</details>        
+        <button id="savebtn">Save PDF</button>
+        <details>
+            <summary>Printing Problems?</summary>
+            <p>Be sure you select your desired page size before printing or creating the PDF. In the print dialog, use the same paper size and ensure that scaling is set to 100%.</p>
+            <h3>Paper Size</h3>
+            <h4>Standard Letter/A4 Size</h4>
+            <p>Either parlor or stage size can be printed on standard paper sizes. For stage size, the squares will be divided vertically and printed on two pages. If you wish you can adjust the settingd to control the overlap between the two pieces.</p>
+            <h3>Large Tabloid/A3 Paper</h3>
+            <p>You can print each stage sized square on a single tabloid or A3 sized piece paper. Under settings, set the "Max Printed Width" to 25cm, to prevent the squares from being split across two pages. When printing, be sure to use the correct paper size.</p>
+            <h3>Save as PDF</h3>
+            <p>Instead of printing directly from your browser, you can save as a PDF file. This is particularly uesful if you plan to send the file to a printing company.</p>
+            <h3>Browsers</h3>
+            <p>Theoretically, this utility should work in all modern browsers. Reality is never that simple. Given that this is a "quick and dirty" utility, there's a limit to how many hours I'm willing to spend resolving browser specific compatibility issues. (Hey, remember what you paid for this!)</p>
+            <p>This utility was designed for Chrome. If you run into trouble with other browsers, you may want to try it in Chrome.</p>
+            <p>Other modern browsers I've tested work reasonably well. (Internet Explorer is not a modern browser. Don't use IE and expect good things!)</p>
+            <p>I'm not a Mac guy, so I don't know how it works in Safari.Give it a shot and let me know how it goes.</p>
+            <h3>Issues</h3>
+            <p>If you find issues or have ideas for improvements, you can let me know on the
+            <a href="https://github.com/magicalbrad/tictactoe">Github project page</a>. I'll
+            do what I can with the time I can commit to this. Better yet, if you're also a
+            computer nerd like me, you can jump in fix or improve it yourself.</p>
+        </details>
     </div>
-    <div class="footer noprint">
+    <div class="footer">
         <div class="content">
-            Made by <a href="https://bradbrownlive.com">Brad Brown</a><br>
+            Made by <a href="https://bradbrownlive.com">Brad Brown</a>
+            <br>
             <a href="https://github.com/magicalbrad/tictactoe">Github Project</a>
         </div>
     </div>
-    <template id="pagetemplate">
-        <div class="page">
-            <span class="title"></span>
-            <div class="image-wrap">
-                <img class="square">
-            </div>
-        </div>
-        <div class="page copy">
-            <span class="title"></span>
-            <div class="image-wrap">
-                <img class="square">
-            </div>
-        </div>
-    </template>
+    <div class="loader">&nbsp;</div>
+    <iframe id="printer"></iframe>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js" integrity="sha256-gJWdmuCRBovJMD9D/TVdo4TIK8u5Sti11764sZT1DhI=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
