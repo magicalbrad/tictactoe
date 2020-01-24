@@ -22,16 +22,13 @@ Finally, click print. (Be sure scaling is set to 100%. You may need to remove he
 ### Settings
 There are a few settings you can adjust. Click on "Settings" to open the settings panel.
 
-#### Max Printed Width
-This controls the maximum width that will appear on any printed page, in centimeters. If the square is larger than this amount, it will be divided and printed across two pages. The default value of 15cm should work well for letter or A4 paper. If you are printing on sufficiently large paper, such as 11x17, you can set this to 25cm to allow stage size squares to be printed on a single page.
-
 #### Overlap
 When a square is split across two pages, this value controls the amount the two pieces will overlap where they meet. You can set it to 0cm, if you wish to have no overlap.
 
 #### Background
 This is the background color for the image. It will only be visible if the image you are using is not square or has transparent areas. If you change the background color, you will need to reload your image to see the change.
-## Changelog
 
+## Changelog
 2019/01/22 - Added X and Mini sizes
 
 2019/01/24 - Updated to print from PDF to simplify printing and improve browser support.
