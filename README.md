@@ -33,4 +33,5 @@ This is the background color for the image. It will only be visible if the image
 ## Changelog
 
 2019/01/22 - Added X and Mini sizes
+
 2019/01/24 - Updated to print from PDF to simplify printing and improve browser support.
