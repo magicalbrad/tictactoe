@@ -6,19 +6,19 @@
   * @return promise - resolves with image data URL
 */
 function readFileAsImage(imageFile) {
-    const fr = new FileReader();
+  let fr = new FileReader();
 
-    return new Promise(function (resolve, reject) {
-        fr.onerror = function () {
-            fr.abort();
-            reject(new DOMException("Problem parsing input file."));
-        };
+  return new Promise(function (resolve, reject) {
+    fr.onerror = function () {
+      fr.abort();
+      reject(new DOMException("Problem parsing input file."));
+    };
 
-        fr.onload = function () {
-            resolve(fr.result);
-        };
-        fr.readAsDataURL(imageFile);
-    });
+    fr.onload = function () {
+      resolve(fr.result);
+    };
+    fr.readAsDataURL(imageFile);
+  });
 }
 
 /**
@@ -27,78 +27,106 @@ function readFileAsImage(imageFile) {
   * @return promise - resolves with loaded image object
 */
 function loadImage(imgSrc) {
-    const IMG = new Image();
+  let img = new Image();
 
-    return new Promise(function (resolve) {
-        IMG.onerror = function () {
-            new DOMException("Problem loading image.");
-        };
+  return new Promise(function (resolve) {
+    img.onerror = function () {
+      new DOMException("Problem loading image.");
+    };
 
-        IMG.onload = function () {
-            resolve(IMG);
-        };
+    img.onload = function () {
+      resolve(img);
+    };
 
-        IMG.src = imgSrc;
-    });
+    img.src = imgSrc;
+  });
+}
+
+/**
+  * @desc loads image to square canvas
+  * @param img image - image to be loaded
+  * @return promise - resolves with canvas
+*/
+function loadCanvas(img) {
+  const SRC_MAX_SIZE = Math.max(img.naturalWidth, img.naturalHeight);
+  const SRC_ASPECT = img.naturalWidth / img.naturalHeight;
+  let canvas = document.createElement("canvas");
+  let ctx = canvas.getContext("2d");
+  let targetWidth = 0;
+  let targetHeight = 0;
+
+  if (SRC_ASPECT > 1) {
+    targetWidth = Math.min(img.naturalWidth, 4500);
+    targetHeight = targetWidth / SRC_ASPECT;
+  } else {
+    targetHeight = Math.min(img.naturalHeight, 4500);
+    targetWidth = targetHeight * SRC_ASPECT;
+  }
+
+  canvas.width = Math.min(SRC_MAX_SIZE, 4500);
+  canvas.height = canvas.width;
+
+  ctx.fillStyle = document.getElementById("background").value;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  ctx.drawImage(img,
+    0,
+    0,
+    img.naturalWidth,
+    img.naturalHeight,
+    (canvas.width - targetWidth) / 2,   //offset for non square image
+    (canvas.height - targetHeight) / 2, //offset for non square image
+    targetWidth,
+    targetHeight
+  );
+  return new Promise((resolve) => resolve(canvas));
 }
 
 /**
   * @desc Creates one square slice of a segment of the image and adds it to DOM
-  * @param image image - image object
-  * @param number col - number of the column to be created (0 - 2)
-  * @param number row - number of the row to be created (0 - 2)
+  * @param srcCanvas canvas - image object
   * @return promise - resolves with input image to allow chaining
 */
-function sliceSquare(image, col, row) {
-    const CANVAS = document.createElement("canvas");
-    const CTX = CANVAS.getContext("2d");
-    const FULL_SIZE = Math.max(image.naturalWidth, image.naturalHeight);
-    const SQUARE_SIZE = FULL_SIZE / 3;
+function sliceSquare(srcCanvas) {
+  const SQUARE_SIZE = srcCanvas.height / 3;
+  let destCanvas = document.createElement("canvas");
+  let destCtx = destCanvas.getContext("2d");
 
+  /**
+    * @desc appends image to DOM
+    * @param row int - row number (0-2)
+    * @param col int - col number (0-2)
+  */
+  function appendImage(row, col) {
+    let img = new Image();
 
-    // Adjust output position for desired row/column
-    const ROW_OFFSET = -(row * SQUARE_SIZE);
-    const COL_OFFSET = -(col * SQUARE_SIZE);
+    destCtx.drawImage(
+      srcCanvas,
+      SQUARE_SIZE * row,
+      SQUARE_SIZE * col,
+      SQUARE_SIZE,
+      SQUARE_SIZE,
+      0,
+      0,
+      destCanvas.width,
+      destCanvas.height
+    )
 
-    // Adjust output position for non-square input inmage
-    const X_ADJUST = (FULL_SIZE - image.naturalWidth) / 2;
-    const Y_ADJUST = (FULL_SIZE - image.naturalHeight) / 2;
+    img.className = "square";
+    img.src = destCanvas.toDataURL("image/png");
+    document.querySelector("#output").appendChild(img);
+  }
 
-    /**
-      * @desc adds two copies image to DOM (2nd used for spanning pages)
-      * @param string imagesrc - src for image slice
-      * @param number col - number of the column (0 - 2)
-      * @param number row - number of the row (0 - 2)
-    */
-    function addSquareToDOM(imgsrc, row, col) {
-        const OUTPUT = document.querySelector("#output");
-        const TEMPLATE = document.querySelector("#pagetemplate");
-        const CLONE = TEMPLATE.content.cloneNode(true);
-        const TITLE = CLONE.querySelectorAll(".title");
-        const IMG = CLONE.querySelectorAll("img");
+  destCanvas.width = SQUARE_SIZE;
+  destCanvas.height = SQUARE_SIZE;
 
-        const ROW_NAME = ["Top", "Middle", "Bottom"];
-        const COL_NAME = ["Left", "Center", "Right"];
-
-        TITLE[0].textContent = `${ROW_NAME[row]} ${COL_NAME[col]}`;
-        TITLE[1].textContent = `${ROW_NAME[row]} ${COL_NAME[col]} (Part 2)`;
-
-        IMG[0].src = imgsrc;
-        IMG[1].src = imgsrc;
-
-        OUTPUT.appendChild(CLONE);
+  for (let col = 0; col < 3; col++) {
+    for (let row = 0; row < 3; row++) {
+      appendImage(row, col);
     }
+  }
 
-    CANVAS.width = SQUARE_SIZE;
-    CANVAS.height = SQUARE_SIZE;
-
-    CTX.fillStyle = document.getElementById("background").value;
-    CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
-    CTX.drawImage(image, COL_OFFSET + X_ADJUST, ROW_OFFSET + Y_ADJUST);
-
-    addSquareToDOM(CANVAS.toDataURL("image/png"), row, col);
-
-    return new Promise((resolve) => resolve(image));
+  return new Promise((resolve) => resolve());
 }
 
 /**
@@ -106,98 +134,223 @@ function sliceSquare(image, col, row) {
   * @param event evt - onChange event object from file button
 */
 function processImage(evt) {
-    document.querySelector("#output").innerHTML = "";
+  const LOADER = document.querySelector(".loader");
+  document.querySelector("#output").innerHTML = "";
 
-    readFileAsImage(evt.target.files[0])
-        .then((file) => loadImage(file))
-        .then((img) => sliceSquare(img, 0, 0))
-        .then((img) => sliceSquare(img, 1, 0))
-        .then((img) => sliceSquare(img, 2, 0))
-        .then((img) => sliceSquare(img, 0, 1))
-        .then((img) => sliceSquare(img, 1, 1))
-        .then((img) => sliceSquare(img, 2, 1))
-        .then((img) => sliceSquare(img, 0, 2))
-        .then((img) => sliceSquare(img, 1, 2))
-        .then((img) => sliceSquare(img, 2, 2));
+  LOADER.classList.add("show");
+  readFileAsImage(evt.target.files[0])
+    .then((file) => loadImage(file))
+    .then((img) => loadCanvas(img))
+    .then((srcCanvas) => sliceSquare(srcCanvas))
+    .finally(() => LOADER.classList.remove("show"));
 
-    evt.target.value = null; //Ensure event will fire if same file chosen again
+  evt.target.value = null; //Ensure event will fire if same file chosen again
 }
 
 /**
-  * @desc adds or removes "split" class needed for printing
+  * @desc Creates a slice of an image
+  * @param image image- input image
+  * @param leftCM int- start of left edge of slice
+  * @param widthCM int- width of slice
 */
-function checkPrintSplit() {
-    const SIZE_STR = document.querySelector("[name=size]:checked").value;
-    const SIZE = parseInt(SIZE_STR);
-    const MAX = document.querySelector("#maxwidth").value;
+function slice(squareImage, left, width) {
+  const CANVAS = document.createElement("canvas");
+  const CTX = CANVAS.getContext("2d");
 
-    if (SIZE > MAX) {
-        document.body.classList.add("split");
+  CANVAS.width = Math.max(width, 1);
+  CANVAS.height = Math.max(squareImage.naturalHeight, 1);
+
+  CTX.drawImage(
+    squareImage,
+    left,
+    0,
+    CANVAS.width,
+    CANVAS.height,
+    0,
+    0,
+    CANVAS.width,
+    CANVAS.height
+  );
+
+  return CANVAS.toDataURL("image/png");
+}
+
+/**
+  * @desc adds square or slice of a square to the PDF.
+  * @param PDF jsPDF - jsPDF Object
+  * @param square image - input image square
+  * @param left int- start of left edge of slice in CM
+  * @param maxWidth int- max width in CM
+*/
+function addSquare(PDF, square, left, maxwidth) {
+  const SQUARE_SIZE = parseInt(
+      document.querySelector("[name=size]:checked").value
+  );
+  const PAPER_SEL = document.querySelector("#paper option:checked");
+  const PAGE_WIDTH = parseFloat(PAPER_SEL.dataset.pagewidth);
+
+  const WIDTH = Math.min(SQUARE_SIZE, maxwidth);
+  const TOP_MARGIN = 1.25;
+  const LEFT_MARGIN = (PAGE_WIDTH - WIDTH) / 2;
+  const OUTLINE_WIDTH = 0.02;
+
+  const LEFT_PX = (left / SQUARE_SIZE) * square.naturalWidth;
+  const WIDTH_PX = (WIDTH / SQUARE_SIZE) * square.naturalWidth;
+
+  PDF.setFillColor(204, 204, 204);
+  PDF.rect(
+    LEFT_MARGIN - OUTLINE_WIDTH,
+    TOP_MARGIN - OUTLINE_WIDTH,
+    WIDTH + (2 * OUTLINE_WIDTH),
+    SQUARE_SIZE + (2 * OUTLINE_WIDTH),
+    "F"
+  );
+
+  PDF.addImage(
+    slice(square, LEFT_PX, WIDTH_PX),
+    "PNG",
+    LEFT_MARGIN,
+    TOP_MARGIN,
+    WIDTH,
+    SQUARE_SIZE,
+    "",
+    "NONE"
+  );
+}
+
+/**
+  * @desc Creates PDF file
+  * @param print string - if true, prints file. Otherwise saves.
+*/
+function makePDF(print = false) {
+  const SQUARE_SIZE = parseInt(
+    document.querySelector("[name=size]:checked").value
+  );
+  const PAPER_SEL = document.querySelector("#paper option:checked");
+  const FORMAT = PAPER_SEL.value;
+  const PAGE_WIDTH = parseFloat(PAPER_SEL.dataset.pagewidth);
+  const MAX_WIDTH = parseInt(PAPER_SEL.dataset.contentwidth);
+  const OVERLAP = parseInt(document.querySelector("#overlap").value);
+
+  const PDF = new jsPDF({unit: "cm", format: FORMAT, compress: false});
+
+  /**
+    * @desc Adds image to PDF as seperate page(s)
+    * @param image image - image to be added.
+    * @param i int - number of image (1-8).
+  */
+  function processImage(image, i) {
+    const TITLES = [
+      "Top Left", "Top Center", "Top Right",
+      "Middle Left", "Middle Center", "Middle Right",
+      "Bottom Left", "Bottom Center", "Bottom Right"
+    ];
+    let title = TITLES[i];
+    let titleWidth = PDF.getTextWidth(title);
+
+    if (i > 0) {
+      PDF.addPage({format: FORMAT});
+    }
+
+    PDF.setFontSize(8);
+    PDF.text(title, 1.25, 1.25 + titleWidth, {angle: 90});
+    addSquare(PDF, image, 0, MAX_WIDTH);
+
+    if (SQUARE_SIZE > MAX_WIDTH) {
+      const SLICE_WIDTH = MAX_WIDTH - OVERLAP;
+
+      PDF.addPage({format: FORMAT});
+
+      title = `${TITLES[i]} (Part 2)`;
+      titleWidth = PDF.getTextWidth(title);
+
+      PDF.text(title, 1.25, 1.25 + titleWidth, {angle: 90});
+      addSquare(PDF, image, SLICE_WIDTH, SQUARE_SIZE - SLICE_WIDTH);
+    }
+  }
+
+  /**
+    * @desc Finishes PDF processing
+  */
+  function closePDF() {
+    if (print) {
+      PDF.autoPrint();
+      document.querySelector("#printer").src = PDF.output("bloburl");
     } else {
-        document.body.classList.remove("split");
+      PDF.save("tictactoe.pdf");
     }
-}
+    document.querySelector(".loader").classList.remove("show");
+  }
 
-/**
-  * @desc sets square size on radio button change
-  * @param event evt - onChange event object from radio button
-*/
-function processRadio(evt) {
-    const ROOT = document.documentElement;
-    
-    ROOT.style.setProperty("--squaresize", evt.target.value);
-    
-    // Print mini size on single page
-    if (parseInt(evt.target.value) === 2) {
-        document.querySelector("#output").classList.add("singlepage");
+  /**
+    * @desc Adds all images to PDF as a single page
+  */
+  function makeSinglePage() {
+    const LEFT_ORIGIN = (PAGE_WIDTH / 2) - 4;
+    const TOP_ORIGIN = 1.25;
+    const OUTLINE_WIDTH = 0.02;
+
+    for (let col = 0; col < 3; col++) {
+      for (let row = 0; row < 3; row++) {
+        let x = LEFT_ORIGIN + (3 * row);
+        let y = TOP_ORIGIN + (3 * col);
+        let image = document.querySelector(
+          `.square:nth-child(${1 + row + (col * 3)})`
+        );
+
+        PDF.setFillColor(204, 204, 204);
+        PDF.rect(
+          x - OUTLINE_WIDTH,
+          y - OUTLINE_WIDTH,
+          2 + (2 * OUTLINE_WIDTH),
+          2 + (2 * OUTLINE_WIDTH),
+          "F"
+        );
+
+        PDF.addImage(image, "PNG", x, y, 2, 2, "", "NONE");
+      }
+    }
+
+    closePDF();
+  }
+
+
+  /**
+    * @desc Throttles makePDF to avoid locking main thread too long
+    * @param num int - number of image to be processed (0-8)
+  */
+  function throttledMakePDF(num) {
+    let img = document.querySelector(`.square:nth-child(${num + 1})`);
+    processImage(img, num);
+
+    if (num < 8 ) {
+      requestAnimationFrame(() => throttledMakePDF(num + 1));
     } else {
-        document.querySelector("#output").classList.remove("singlepage");
+      closePDF();
     }
-    
-    checkPrintSplit();
-}
+  }
 
-/**
-  * @desc sets css maxwidth css variable on input field change
-  * @param event evt - onChange event object
-*/
-function setMaxWidth(evt) {
-    const ROOT = document.documentElement;
-    
-    if (parseFloat(evt.target.value) < parseFloat(evt.target.min)) {
-        evt.target.value = evt.target.min;
-    } else if (parseFloat(evt.target.value) > parseFloat(evt.target.max)) {
-        evt.target.value = evt.target.max;
-    }
 
-    ROOT.style.setProperty("--maxwidth", evt.target.value);
-
-    checkPrintSplit();
-}
-
-/**
-  * @desc sets css overlap css variable on input field change
-  * @param event evt - onChange event object
-*/
-function setOverlap(evt) {
-    const ROOT = document.documentElement;
-
-    if (parseInt(evt.target.value) < parseInt(evt.target.min)) {
-        evt.target.value = evt.target.min;
-    } else if (parseInt(evt.target.value) > parseInt(evt.target.max)) {
-        evt.target.value = evt.target.max;
-    }
-
-    ROOT.style.setProperty("--overlap", evt.target.value);
-
-    checkPrintSplit();
+  if (SQUARE_SIZE === 2) {
+      makeSinglePage();
+  } else {
+    requestAnimationFrame(() => throttledMakePDF(0));
+  }
 }
 
 //Set listeners
-document.querySelectorAll("[name=size]").forEach((radioEl) => {
-    radioEl.addEventListener("change", processRadio)
-});
 document.querySelector("#imgfile").addEventListener("change", processImage);
-document.querySelector("#maxwidth").addEventListener("change", setMaxWidth);
-document.querySelector("#overlap").addEventListener("change", setOverlap);
-document.querySelector("#printbtn").addEventListener("click", () => print());
+document.querySelector("#printbtn").addEventListener(
+  "click",
+  function () {
+    document.querySelector(".loader").classList.add("show");
+    setTimeout(()=>makePDF(true), 100); // allow spinner to start
+  }
+);
+document.querySelector("#savebtn").addEventListener(
+  "click",
+  function () {
+    document.querySelector(".loader").classList.add("show");
+    setTimeout(()=>makePDF(false), 100); // allow spinner to start
+  }
+);
