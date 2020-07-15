@@ -40,6 +40,7 @@ h1 {
 summary {
   background-color: var(--primarycolor);
   color: #fff;
+  cursor: pointer;
   display: list-item;
   font-weight: bold;
   margin-left: -50px;
