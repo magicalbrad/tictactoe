@@ -11,11 +11,11 @@ Simply select size of your Tic Tac Toe Pro and provide the image you wish to use
 Want to try it out? Just go here: https://magicalbrad.github.io/tictactoe/
 
 ## Usage
-Open the page in your browser. This utility was designed for the Chrome browser. It works reasonably in Firefox, though you may need to go to page setup to set scaling, remove headers and footers, and adjust margins. In Firefox, I'd recommend manually opening Print Preview from the menu rather than using the Print button. Legacy Microsoft Edge (Version 18 or lower) is a mess, so don't even try. New Edge (version 79 or greater) does work. I don't know about Safari.
+Open the page in your browser. This utility was designed for the Chrome browser, though it should work reasonably well in any modern browser. If you run into trouble with other browsers, you may want to give it a try in Chrome.
 
-Select the size you are using.
+Select the size you are using, and the size of the paper you will be printing on. Optionally, you can adjust the other settings.
 
-Then, click the "Choose File" button and select your desired file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for printing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
+Then, click the "Choose File" button and select your desired image file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for printing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
 
 Finally, click print. (Be sure scaling is set to 100%. You may need to remove headers or adjust margins.)
 
