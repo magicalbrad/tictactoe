@@ -15,7 +15,7 @@ Open the page in your browser. This utility was designed for the Chrome browser,
 
 Select the size you are using, and the size of the paper you will be printing on. Optionally, you can adjust the other settings.
 
-Then, click the "Choose File" button and select your desired image file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for printing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x44429 pixels for stage size.
+Then, click the "Choose File" button and select your desired image file. The image should be JPEG, PNG, or GIF format. Ideally, you should use a square image, large enough for printing at your desired size. The image will be automatically scaled to fit, but a small image won't look good printed at a large size. Ideally, I'd recommend a minimum of 2303x2303 pixels for parlor size, or 4429x4429 pixels for stage size.
 
 Finally, click print. (Be sure scaling is set to 100%. You may need to remove headers or adjust margins.)
 
