@@ -113,7 +113,8 @@ function sliceSquare(srcCanvas) {
     )
 
     img.className = "square";
-    img.src = destCanvas.toDataURL("image/png");
+    // img.src = destCanvas.toDataURL("image/png");
+    img.src = destCanvas.toDataURL("image/jpeg");
     document.querySelector("#output").appendChild(img);
   }
 
@@ -172,7 +173,8 @@ function slice(squareImage, left, width) {
     CANVAS.height
   );
 
-  return CANVAS.toDataURL("image/png");
+  // return CANVAS.toDataURL("image/png");
+  // return CANVAS.toDataURL("image/jpeg");
 }
 
 /**
@@ -208,7 +210,7 @@ function addSquare(PDF, square, left, maxwidth) {
 
   PDF.addImage(
     slice(square, LEFT_PX, WIDTH_PX),
-    "PNG",
+    "JPEG",
     LEFT_MARGIN,
     TOP_MARGIN,
     WIDTH,
@@ -307,7 +309,7 @@ function makePDF(print = false) {
           "F"
         );
 
-        PDF.addImage(image, "PNG", x, y, 2, 2, "", "NONE");
+        PDF.addImage(image, "JPEG", x, y, 2, 2, "", "NONE");
       }
     }
 
