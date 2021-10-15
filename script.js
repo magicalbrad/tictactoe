@@ -174,7 +174,7 @@ function slice(squareImage, left, width) {
   );
 
   // return CANVAS.toDataURL("image/png");
-  // return CANVAS.toDataURL("image/jpeg");
+  return CANVAS.toDataURL("image/jpeg");
 }
 
 /**
