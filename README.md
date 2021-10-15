@@ -32,3 +32,5 @@ This is the background color for the image. It will only be visible if the image
 2019/01/22 - Added X and Mini sizes
 
 2019/01/24 - Updated to print from PDF to simplify printing and improve browser support.
+
+2021/10/14 - Use JPEG rather than PNG in PDF's to increase speed and reduce file size.
